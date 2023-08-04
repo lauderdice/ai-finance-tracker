@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+  postgres:
+    image: "postgres:13"
+    environment:
+      POSTGRES_USER: lauderdice
+      POSTGRES_PASSWORD: lauderdice
+      POSTGRES_DB: finance
+    ports:
+      - "6432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
